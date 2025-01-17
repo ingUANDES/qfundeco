@@ -6,6 +6,10 @@ En la carpeta de códigos `notebooks` podrán encontrar apuntes con ejercicios n
 
 Todo esfuerzo es bienvenido, por favor si encuentra errores o tiene ideas de cómo mejorar o completar el material, sírvase abrir un [Issue](https://github.com/ingUANDES/qfundeco/issues)
 
+## Notebooks
+
+- Intro: modelo básico para orientar simulación y resolución de problemas ([ipynb en R]([url](https://github.com/ingUANDES/qfundeco/blob/main/notebooks/Intro.ipynb)))
+
 ## Material previo
 
 - [Ayudantías](https://github.com/ingUANDES/FundEcoAy)
