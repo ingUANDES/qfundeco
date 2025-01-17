@@ -1,0 +1,56 @@
+---
+title: "Introducción al modelado"
+---
+
+<a href="https://colab.research.google.com/github/ingUANDES/qfundeco/blob/main/notebooks/Intro.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+
+El siguiente cuaderno es un complemento a [DIY Macroeconomic Model Simulation](https://macrosimulation.org/).
+
+Comenzaremos con resolver un modelo Keynesiano simple donde la producción agregada de una economía, $Y$, se descompone entre consumo $C$ e inversión $I$. De forma que $Y=C+I$. A su vez, el consumo es una función lineal del la producción, $C=c_0+c_1\cdot Y$.
+
+Teóricamente sabemos que hay un valor del consumo que depende de $c_0$, $c_1$ e $I$. Dicho valor es el que resuelve el sistema de ecuaciones del párrafo anterior. En efecto, al reemplazar por $Y$ en la ecuación de consumo tenemos que $C=c_0+c_1\cdot(C+I)$ desde donde obtenemos que $C^*=\frac{c_0+c_1\cdot I}{1-c_1}$. Reemplazando este valor de consumo en $Y$ tenemos que $Y^*=\frac{c_0+c_1\cdot I}{1-c_1}+I=\frac{c_0+I}{1-c_1}$.
+
+Ejercicio. Para $(c_0,c_1,I)=(2,0.8,10)$ ¿Cuáles son los valores de consumo y producción?
+
+```{r}
+c_0=2
+c_1=0.8
+I=11
+Cstar=(c_0+c_1*I)/(1-c_1)
+Cstar
+```
+
+```{r}
+Ystar=(c_0+I)/(1-c_1)
+Ystar
+```
+
+Otra forma de resolver el modelo es pensar en una dinámica donde $C_t$ e $Y_t$ son los valores en el momento $t$. Si suponemos que $C_1=Y_1=1$ y que el sistema de ecuaciones anterior se traduce "dinámicamente" a $Y_{t+1}=C_t+I$ junto con $C_{t+1}=c_0+c_1\cdot Y_{t+1}$.
+
+```{r}
+T=100 # Largo de la proyección
+# Inicializa los vectores para Y y C
+Y <- vector(length=T)
+C <- vector(length=T)
+# Define las condiciones iniciales
+Y[1] = 1
+C[1] = 1
+# Calcula la serie para t de 1 a 100
+for (t in 1:100) {
+  Y[t + 1] <- C[t] + I
+  C[t + 1] <- c_0 + c_1 * Y[t + 1]
+}
+
+# Puedes graficar las series para visualizarlas
+plot(Y, type = "l", col = "blue", xlab = "t", ylab = "Valor")
+lines(C, type = "l", col = "red")
+# Agrega las líneas horizontales
+abline(h = 65, col = "blue", lty = 3)  # Línea horizontal en 65
+abline(h = 54, col = "red", lty = 3)  # Línea horizontal en 54
+legend("bottomright",
+       legend = expression(Y[t], C[t], Y^"*" == 65, C^"*" == 54),
+       col = c("blue", "red", "blue", "red"),
+       lty = c(1, 1, 3, 3))
+```
+
+Ejercicio. Evalúe el impacto de una cambio en el modelo a partir de un determinado periodo.
