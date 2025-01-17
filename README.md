@@ -8,7 +8,7 @@ Todo esfuerzo es bienvenido, por favor si encuentra errores o tiene ideas de có
 
 ## Notebooks
 
-- Intro: modelo básico para orientar simulación y resolución de problemas ([ipynb en R](https://github.com/ingUANDES/qfundeco/blob/main/notebooks/Intro.ipynb))
+- Intro: modelo básico para orientar simulación y resolución de problemas ([ipynb en R](https://github.com/ingUANDES/qfundeco/blob/main/notebooks/Intro.ipynb)|[qmd en R](https://github.com/ingUANDES/qfundeco/blob/main/notebooks/Intro.qmd))
 
 ## Material previo
 
